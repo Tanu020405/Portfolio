@@ -1,0 +1,90 @@
+.resume-page {
+  min-height: 100vh;
+  background: #0d0d0d;
+  color: #fff;
+}
+
+.resume-header {
+  background: #1a1a1a;
+  padding: 2rem;
+  border-bottom: 1px solid #2a2a2a;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  color: #ccc;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  border-color: #00c8ff;
+  color: #00c8ff;
+  background: rgba(0, 200, 255, 0.05);
+}
+
+.resume-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.resume-content {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 2rem;
+  min-height: 600px;
+}
+
+.resume-iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  background: #fff;
+}
+
+.resume-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 2rem;
+  border-top: 1px solid #2a2a2a;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .resume-header {
+    padding: 1.5rem;
+  }
+
+  .resume-container {
+    padding: 1rem;
+  }
+
+  .resume-content {
+    padding: 1.5rem;
+  }
+
+  .resume-iframe {
+    height: 500px;
+  }
+
+  .resume-actions {
+    flex-direction: column;
+  }
+
+  .resume-actions button {
+    width: 100%;
+  }
+}
