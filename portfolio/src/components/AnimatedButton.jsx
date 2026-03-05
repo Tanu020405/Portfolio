@@ -22,6 +22,13 @@ const AnimatedButton = ({
     if (href) {
       if (href.startsWith('mailto:')) {
         window.location.href = href;
+      } else if (href.startsWith('#')) {
+        // Scroll to anchor
+        const elementId = href.substring(1);
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
       } else {
         window.open(href, '_blank');
       }

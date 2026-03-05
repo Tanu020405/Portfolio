@@ -23,7 +23,7 @@ const StaggerContainer = ({
   const { ref, isVisible } = useScrollAnimation({ threshold });
 
   const getInitialValues = () => {
-    switch(direction) {
+    switch (direction) {
       case 'up': return { opacity: 0, y: 40 };
       case 'down': return { opacity: 0, y: -40 };
       case 'left': return { opacity: 0, x: -40 };
@@ -33,7 +33,7 @@ const StaggerContainer = ({
   };
 
   const getVisibleValues = () => {
-    switch(direction) {
+    switch (direction) {
       case 'up': return { opacity: 1, y: 0 };
       case 'down': return { opacity: 1, y: 0 };
       case 'left': return { opacity: 1, x: 0 };
@@ -74,12 +74,22 @@ const StaggerContainer = ({
       {...rest}
     >
       {React.Children.map(children, (child, index) => (
-        <motion.div 
-          key={index} 
+        <motion.div
+          key={index}
           variants={itemVariants}
           whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+          style={{ cursor: 'pointer' }}
+          onClick={child?.props?.onClick}
+          onKeyDown={child?.props?.onKeyDown}
+          role={child?.props?.role}
+          tabIndex={child?.props?.tabIndex}
         >
-          {child}
+          {React.cloneElement(child, {
+            onClick: undefined,
+            onKeyDown: undefined,
+            role: undefined,
+            tabIndex: undefined,
+          })}
         </motion.div>
       ))}
     </motion.div>

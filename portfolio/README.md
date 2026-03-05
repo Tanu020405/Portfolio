@@ -1,16 +1,90 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, animated portfolio website built with React and Vite, featuring smooth scroll animations, parallax effects, and interactive hover components.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✨ **Smooth Scroll Animations** - Elements animate as they come into view
+- 🎨 **Parallax Effects** - Dynamic visual depth with parallax sections
+- 🎯 **Interactive Hover Cards** - Engaging hover states and interactions
+- 📱 **Responsive Design** - Mobile-friendly layout
+- ⚡ **Fast Performance** - Built with Vite for instant HMR and optimized production builds
+- 🎬 **Framer Motion** - Advanced animation library for smooth transitions
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - UI library
+- **Vite 7** - Build tool
+- **Framer Motion 12** - Animation library
+- **React Router DOM 7** - Client-side routing
+- **React Intersection Observer 10** - Scroll detection
+- **ESLint** - Code linting
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
+```
+
+## Scripts
+
+- `npm run dev` - Start development server (http://localhost:5173)
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint checks
+
+## Project Structure
+
+```
+src/
+├── components/        # Reusable UI components
+│   ├── AnimatedButton.jsx
+│   ├── AnimatedSection.jsx
+│   ├── HoverCard.jsx
+│   ├── ParallaxSection.jsx
+│   └── StaggerContainer.jsx
+├── hooks/            # Custom React hooks
+│   └── useScrollAnimation.js
+├── pages/            # Page components
+│   └── ResumePage.jsx
+├── assets/           # Static assets
+├── App.jsx          # Main app component
+└── main.jsx         # Entry point
+```
+
+## Development
+
+Start the development server:
+```bash
+npm run dev
+```
+
+The app will be available at `http://localhost:5173` with hot module replacement enabled.
+
+## Building for Production
+
+Build and optimize for production:
+```bash
+npm run build
+```
+
+The optimized files will be in the `dist/` folder, ready for deployment.
+
+## Deployment
+
+Your project is configured for deployment to any static hosting platform (Netlify, Vercel, GitHub Pages, etc.). The build output directory is `dist/`.
+
+Steps:
+1. Run `npm run build`
+2. Deploy the `dist/` folder to your hosting provider
+3. Set the base URL in `vite.config.js` if deploying to a subdirectory
+
+## Animation Setup
+
+See [ANIMATION_SETUP.md](./ANIMATION_SETUP.md) for detailed information about the animation system and how to add new animated components.
+
+## License
+
+Feel free to use this portfolio as a template for your own projects!

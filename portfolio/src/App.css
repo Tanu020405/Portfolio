@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.hero > * {
+.hero>* {
   position: relative;
   z-index: 1;
 }
@@ -26,7 +26,7 @@
 .hero h1 {
   font-size: clamp(2rem, 8vw, 4rem);
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   letter-spacing: -1px;
   color: #fff;
 }
@@ -36,14 +36,14 @@
   color: #00c8ff;
   font-weight: 300;
   letter-spacing: 0.5px;
+  margin-bottom: 32px;
 }
 
 /* Sections */
 .section {
-  padding: 6rem 2rem;
-  max-width: 1200px;
+  padding: 80px 2rem;
+  max-width: 1100px;
   margin: 0 auto;
-  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +63,7 @@
 
 .section h2 {
   font-size: clamp(1.8rem, 5vw, 3rem);
-  margin-bottom: 2rem;
+  margin-bottom: 24px;
   color: #fff;
   font-weight: 700;
   position: relative;
@@ -73,7 +73,7 @@
 .section h2::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -8px;
   left: 0;
   height: 2px;
   width: 50px;
@@ -92,8 +92,8 @@
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  gap: 24px;
+  margin-top: 24px;
 }
 
 .project-card {
@@ -105,6 +105,8 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
@@ -112,6 +114,15 @@
   background: #222;
   transform: translateY(-6px);
   box-shadow: 0 12px 30px rgba(0, 200, 255, 0.15);
+}
+
+.project-card:hover h3 {
+  color: #00c8ff;
+}
+
+.project-card:focus {
+  outline: 2px solid #00c8ff;
+  outline-offset: 2px;
 }
 
 .project-card h3 {
@@ -132,12 +143,41 @@
   line-height: 1.6;
 }
 
-/* Skills Grid */
-.skills-grid {
+/* Skills — Categorized */
+.skills-categories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.skill-group {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.3s ease;
+}
+
+.skill-group:hover {
+  border-color: #00c8ff;
+}
+
+.skill-group__label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #00c8ff;
+}
+
+.skill-group__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .skill {
@@ -160,7 +200,133 @@
   box-shadow: 0 0 15px rgba(0, 200, 255, 0.2);
 }
 
+/* Coding Profiles */
+.coding-profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.coding-card {
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.coding-card:hover {
+  transform: translateY(-6px);
+}
+
+/* LeetCode — yellow theme */
+.coding-card--leetcode {
+  background: linear-gradient(135deg, #1a1500 0%, #2a2000 100%);
+  border-color: #f0a500;
+  box-shadow: 0 4px 20px rgba(240, 165, 0, 0.1);
+}
+
+.coding-card--leetcode:hover {
+  box-shadow: 0 12px 35px rgba(240, 165, 0, 0.25);
+}
+
+/* GFG — green theme */
+.coding-card--gfg {
+  background: linear-gradient(135deg, #001a08 0%, #002a0e 100%);
+  border-color: #2db55d;
+  box-shadow: 0 4px 20px rgba(45, 181, 93, 0.1);
+}
+
+.coding-card--gfg:hover {
+  box-shadow: 0 12px 35px rgba(45, 181, 93, 0.25);
+}
+
+.coding-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.coding-card__logo {
+  font-size: 1.8rem;
+}
+
+.coding-card__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.coding-card__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.coding-card__count {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.coding-card--leetcode .coding-card__count {
+  color: #f0a500;
+}
+
+.coding-card--gfg .coding-card__count {
+  color: #2db55d;
+}
+
+.coding-card__label {
+  font-size: 0.9rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.coding-card__btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.coding-card__btn--leetcode {
+  background: rgba(240, 165, 0, 0.15);
+  border: 1px solid #f0a500;
+  color: #f0a500;
+}
+
+.coding-card__btn--leetcode:hover {
+  background: #f0a500;
+  color: #0d0d0d;
+}
+
+.coding-card__btn--gfg {
+  background: rgba(45, 181, 93, 0.15);
+  border: 1px solid #2db55d;
+  color: #2db55d;
+}
+
+.coding-card__btn--gfg:hover {
+  background: #2db55d;
+  color: #0d0d0d;
+}
+
 /* Responsive */
+
 @media (max-width: 768px) {
   .section {
     padding: 4rem 1.5rem;
@@ -177,8 +343,15 @@
 
 /* Animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* HoverCard Styles */

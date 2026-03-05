@@ -1,9 +1,24 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AnimatedSection, StaggerContainer, ParallaxSection, AnimatedButton } from './components';
+import { AnimatedSection, StaggerContainer, ParallaxSection, AnimatedButton, ProjectModal } from './components';
+import { projectsData } from './data/projectsData';
 import './App.css';
 
 function App() {
   const navigate = useNavigate();
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedProject(null), 300);
+  };
+
   return (
     <div className="app">
       {/* Hero Section with Parallax */}
@@ -13,8 +28,8 @@ function App() {
           <p>Full Stack Developer | Creative Problem Solver</p>
           <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <AnimatedButton variant="default" href="#projects">View My Work</AnimatedButton>
-            <AnimatedButton 
-              variant="outline" 
+            <AnimatedButton
+              variant="outline"
               onClick={() => navigate('/resume')}
             >
               View Resume
@@ -27,10 +42,10 @@ function App() {
       <section className="section">
         <AnimatedSection variant="slideInUp" duration={0.8} delay={0.1}>
           <h2>About Me</h2>
-          <p>
-            I'm a passionate developer with expertise in building modern web applications. 
-            With a strong foundation in full-stack development and a keen eye for design, 
-            I create intuitive and performant digital experiences.
+          <p fontSize="1.1rem" style={{ marginTop: '1rem' }}>
+            I'm a Computer Science student who builds full-stack web applications and practices data structures and
+            algorithms regularly. I enjoy developing scalable systems, creating clean user interfaces,
+            and improving my problem-solving skills through coding challenges and real-world projects.
           </p>
         </AnimatedSection>
       </section>
@@ -40,20 +55,26 @@ function App() {
         <AnimatedSection variant="slideInLeft" duration={0.8} delay={0.1}>
           <h2>Featured Projects</h2>
         </AnimatedSection>
-        
+
         <StaggerContainer staggerDelay={0.2} className="projects" direction="up">
-          <div className="project-card">
-            <h3>Project Name 1</h3>
-            <p>Brief description of the project, technologies used, and key achievements.</p>
-          </div>
-          <div className="project-card">
-            <h3>Project Name 2</h3>
-            <p>Brief description of the project, technologies used, and key achievements.</p>
-          </div>
-          <div className="project-card">
-            <h3>Project Name 3</h3>
-            <p>Brief description of the project, technologies used, and key achievements.</p>
-          </div>
+          {projectsData.map((project) => (
+            <div
+              key={project.id}
+              className="project-card"
+              onClick={() => handleProjectClick(project)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleProjectClick(project);
+                }
+              }}
+            >
+              <h3>{project.title}</h3>
+              <p>{project.shortDescription}</p>
+            </div>
+          ))}
         </StaggerContainer>
       </section>
 
@@ -62,33 +83,97 @@ function App() {
         <AnimatedSection variant="rotateIn" duration={0.8} delay={0.1}>
           <h2>Technical Skills</h2>
         </AnimatedSection>
-        <StaggerContainer staggerDelay={0.1} className="skills-grid" direction="up">
-          <span className="skill">React</span>
-          <span className="skill">JavaScript</span>
-          <span className="skill">TypeScript</span>
-          <span className="skill">CSS/SCSS</span>
-          <span className="skill">Node.js</span>
-          <span className="skill">MongoDB</span>
-          <span className="skill">UX/UI Design</span>
+        <StaggerContainer staggerDelay={0.1} className="skills-categories" direction="up">
+          <div className="skill-group">
+            <span className="skill-group__label">Languages</span>
+            <div className="skill-group__tags">
+              <span className="skill">Java</span>
+              <span className="skill">JavaScript</span>
+            </div>
+          </div>
+          <div className="skill-group">
+            <span className="skill-group__label">Frontend</span>
+            <div className="skill-group__tags">
+              <span className="skill">React</span>
+              <span className="skill">HTML</span>
+              <span className="skill">CSS</span>
+            </div>
+          </div>
+          <div className="skill-group">
+            <span className="skill-group__label">Backend</span>
+            <div className="skill-group__tags">
+              <span className="skill">Node.js</span>
+              <span className="skill">Express</span>
+            </div>
+          </div>
+          <div className="skill-group">
+            <span className="skill-group__label">Database</span>
+            <div className="skill-group__tags">
+              <span className="skill">MongoDB</span>
+            </div>
+          </div>
+          <div className="skill-group">
+            <span className="skill-group__label">Tools</span>
+            <div className="skill-group__tags">
+              <span className="skill">Git</span>
+              <span className="skill">GitHub</span>
+              <span className="skill">Vercel</span>
+            </div>
+          </div>
         </StaggerContainer>
       </section>
 
-      {/* Experience Section */}
+
+      {/* Coding Profiles Section */}
       <section className="section">
         <AnimatedSection variant="slideInRight" duration={0.8} delay={0.1}>
-          <h2>Experience</h2>
-          <p>
-            <strong>Senior Developer</strong> @ Company Name | 2022 - Present
-            <br />
-            Led the development of high-impact features and mentored junior developers.
-          </p>
-          <p>
-            <strong>Full Stack Developer</strong> @ Previous Company | 2020 - 2022
-            <br />
-            Built scalable web applications and improved system performance by 40%.
-          </p>
+          <h2>Coding Profiles</h2>
+          <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.5rem', color: '#aaa' }}>
+            150+ Coding Problems Solved</p>
+          <div className="coding-profiles-grid">
+            {/* LeetCode Card */}
+            <div className="coding-card coding-card--leetcode">
+              <div className="coding-card__header">
+                <span className="coding-card__logo">⚡</span>
+                <h3 className="coding-card__title">LeetCode</h3>
+              </div>
+              <div className="coding-card__stat">
+                <span className="coding-card__count">100+</span>
+                <span className="coding-card__label">Problems Solved</span>
+              </div>
+              <a
+                href="https://leetcode.com/u/Tanishq_020405/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="coding-card__btn coding-card__btn--leetcode"
+              >
+                View Profile →
+              </a>
+            </div>
+
+            {/* GFG Card */}
+            <div className="coding-card coding-card--gfg">
+              <div className="coding-card__header">
+                <span className="coding-card__logo">🌿</span>
+                <h3 className="coding-card__title">GeeksForGeeks</h3>
+              </div>
+              <div className="coding-card__stat">
+                <span className="coding-card__count">50+</span>
+                <span className="coding-card__label">Problems Solved</span>
+              </div>
+              {/* <a
+                href="https://www.geeksforgeeks.org/user/tanishqsingh233001/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="coding-card__btn coding-card__btn--gfg"
+              >
+                View Profile →
+              </a> */}
+            </div>
+          </div>
         </AnimatedSection>
       </section>
+
 
       {/* Contact Section */}
       <section className="section">
@@ -98,12 +183,21 @@ function App() {
             I'm always interested in hearing about new projects and opportunities.
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <AnimatedButton variant="default" href="mailto:your.email@example.com">Email Me</AnimatedButton>
-            <AnimatedButton variant="outline" href="https://linkedin.com">LinkedIn</AnimatedButton>
-            <AnimatedButton variant="outline" href="https://github.com">GitHub</AnimatedButton>
+            <AnimatedButton variant="default" href="mailto:tanishqsingh233001@gmail.com">Email Me</AnimatedButton>
+            <AnimatedButton variant="outline" href="https://www.linkedin.com/in/tanishq-singh-2629161a9/">LinkedIn</AnimatedButton>
+            <AnimatedButton variant="outline" href="https://github.com/Tanu020405">GitHub</AnimatedButton>
           </div>
         </AnimatedSection>
       </section>
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 }
