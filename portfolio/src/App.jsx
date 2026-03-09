@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatedSection, StaggerContainer, ParallaxSection, AnimatedButton, ProjectModal } from './components';
 import { projectsData } from './data/projectsData';
@@ -8,6 +8,25 @@ function App() {
   const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [leetcodeSolved, setLeetcodeSolved] = useState("100+");
+
+  useEffect(() => {
+    const fetchLeetcodeStats = async () => {
+      try {
+        const response = await fetch('https://leetcode-api-faisalshohag.vercel.app/Tanishq_020405');
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.totalSolved) {
+            setLeetcodeSolved(data.totalSolved);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch LeetCode stats:", error);
+      }
+    };
+
+    fetchLeetcodeStats();
+  }, []);
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -138,7 +157,7 @@ function App() {
                 <h3 className="coding-card__title">LeetCode</h3>
               </div>
               <div className="coding-card__stat">
-                <span className="coding-card__count">100+</span>
+                <span className="coding-card__count">{leetcodeSolved}</span>
                 <span className="coding-card__label">Problems Solved</span>
               </div>
               <a
