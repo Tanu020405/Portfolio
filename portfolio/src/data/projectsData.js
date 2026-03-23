@@ -15,7 +15,7 @@ export const projectsData = [
       'Automated notifications and reminders',
       'Dashboard with key metrics'
     ],
-    liveLink: 'https://example.com/tenant-manager',
+    liveLink: 'https://tenant-manager-beta.vercel.app/',
     githubLink: 'https://github.com/Tanu020405/Tenant_manager',
     image: tenantManagerImg
   },
