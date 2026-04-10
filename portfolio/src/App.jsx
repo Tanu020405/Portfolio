@@ -123,12 +123,16 @@ function App() {
             <div className="skill-group__tags">
               <span className="skill">Node.js</span>
               <span className="skill">Express</span>
+              <span className="skill">Spring Boot</span>
+              <span className="skill">WebSocket</span>
             </div>
           </div>
           <div className="skill-group">
             <span className="skill-group__label">Database</span>
             <div className="skill-group__tags">
               <span className="skill">MongoDB</span>
+              <span className="skill">PostgreSQL</span>
+              <span className="skill">Redis</span>
             </div>
           </div>
           <div className="skill-group">
@@ -137,6 +141,7 @@ function App() {
               <span className="skill">Git</span>
               <span className="skill">GitHub</span>
               <span className="skill">Vercel</span>
+              <span className="skill">Docker</span>
             </div>
           </div>
         </StaggerContainer>
